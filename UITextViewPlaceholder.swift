@@ -8,7 +8,7 @@
 import UIKit
 
 var textFieldPlaceHolderText = ""
-var textViewTextField: UITextField = UITextField(frame: CGRect.zero)
+private var placeholderTextView: UITextView = UITextView(frame: CGRect.zero)
 
 extension UITextView: UITextViewDelegate {
     public var placeholder: String? {
@@ -41,14 +41,16 @@ extension UITextView: UITextViewDelegate {
     }
 
     private func addPlaceHolder() {
-        if !subviews.contains(textViewTextField) {
-            textViewTextField.frame = CGRect(x: 0, y: 0, width: bounds.size.width, height: 40)
-
-            textViewTextField.isUserInteractionEnabled = false
-            textViewTextField.placeholder = "  \(textFieldPlaceHolderText)"
-            textViewTextField.borderStyle = .none
-            textViewTextField.font = font
-            addSubview(textViewTextField)
+        if !subviews.contains(placeholderTextView) {
+            // placeholderTextView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.bounds.width, height: 70))
+            placeholderTextView.isUserInteractionEnabled = false
+            placeholderTextView.isSelectable = false
+            placeholderTextView.text = textFieldPlaceHolderText
+            placeholderTextView.textColor = .lightGray
+            placeholderTextView.font = font
+            placeholderTextView.sizeToFit()
+            placeholderTextView.backgroundColor = UIColor.clear
+            addSubview(placeholderTextView)
         }
     }
 
@@ -68,6 +70,6 @@ extension UITextView: UITextViewDelegate {
     }
 
     private func updatePlaceHolder() {
-        textViewTextField.isHidden = text.count > 0
+        placeholderTextView.isHidden = text.count > 0
     }
 }
