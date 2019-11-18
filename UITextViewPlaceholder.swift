@@ -48,7 +48,7 @@ extension UITextView: UITextViewDelegate {
             placeholderTextView.text = textFieldPlaceHolderText
             placeholderTextView.textColor = .lightGray
             placeholderTextView.font = font
-            placeholderTextView.sizeToFit()
+            placeholderTextView.frame = self.bounds
             placeholderTextView.backgroundColor = UIColor.clear
             addSubview(placeholderTextView)
         }
